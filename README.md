@@ -1,4 +1,4 @@
-# Class 9 Maths Number Systems Notes
+# Class 9 Maths Number Systems Hnadrwitten Notes
 
 ## All parts uploaded! The chapter is now complete.
 
