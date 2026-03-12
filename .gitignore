@@ -1,0 +1,17 @@
+# PDFs are source files — stored on main branch, not in feature branches
+# Commit generated modules (modules/) but not the raw PDFs
+pdfs/*.pdf
+
+# Python bytecode
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# OS files
+.DS_Store
+Thumbs.db

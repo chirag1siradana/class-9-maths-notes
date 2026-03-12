@@ -1,10 +1,51 @@
-# Class 9 Maths Notes
+# Class 9 Maths Notes — Success Achievers Institute
 
-Detailed notes for Class 9 Mathematics covering all 15 chapters of the NCERT syllabus. Each chapter includes key concepts, important formulas, worked examples, and practice problems.
+**Success Achievers Institute, Alwar, Rajasthan**
+*"Better Than Others, No One Can Refute"*
+
+Detailed notes for Class 9 Mathematics covering all 15 chapters of the NCERT syllabus.
+
+> 🆕 **Ultra-Premium Coaching Modules** are now generated directly from the original PDF notes
+> using OCR. See the [`modules/`](modules/) directory for the full Kota-style coaching content.
 
 ---
 
-## 📚 Chapters
+## 🏆 Ultra-Premium Coaching Modules (Generated from PDFs)
+
+| Chapter | Module File | Source PDFs |
+|---------|-------------|-------------|
+| Chapter 1: Number Systems | [chapter-01-number-systems-module.md](modules/chapter-01-number-systems-module.md) | Parts 1–10 (10 PDFs) |
+
+Each module contains:
+- Kota-style **Concept Boxes**
+- **Memory Tricks** (mnemonics)
+- **Gen-Z Hinglish Classroom Dialogues**
+- **Board Exam Alerts** & **Common Mistakes**
+- **Competitive Edge** tips for JEE/NEET foundation
+- **Quick Revision Sheet** & **Formula Sheet**
+- **Board Exam Smart Answer** formats
+- **10 MCQs**, **5 Assertion–Reasoning**, **5 VSA**, **5 SA**, **3 Case Studies**, **5 Competency Questions**
+- Success Achievers Institute branding throughout
+
+### ➕ Generate a Module from PDFs
+
+```bash
+# Prerequisites
+pip install -r requirements.txt
+sudo apt-get install tesseract-ocr tesseract-ocr-eng tesseract-ocr-hin
+
+# Generate Chapter 1 module from the 10 PDF parts
+python tools/pdf_to_module.py --chapter number_systems
+
+# Generate all chapters at once
+python tools/pdf_to_module.py --all
+```
+
+See [`pdfs/README.md`](pdfs/README.md) for full instructions.
+
+---
+
+## 📚 Chapters (Starter Notes)
 
 | # | Chapter | File |
 |---|---------|------|
@@ -49,22 +90,20 @@ Detailed notes for Class 9 Mathematics covering all 15 chapters of the NCERT syl
 ```
 class-9-maths-notes/
 ├── README.md
-├── chapters/
+├── .gitignore
+├── requirements.txt              ← Python dependencies for PDF tool
+├── pdfs/
+│   ├── README.md                 ← PDF usage guide
+│   ├── 01_number_systems_part1.pdf  ← Source PDFs (on main branch)
+│   └── ... (10 parts total)
+├── tools/
+│   └── pdf_to_module.py          ← OCR + module generator script
+├── modules/
+│   └── chapter-01-number-systems-module.md  ← Generated premium modules
+├── chapters/                     ← Starter chapter notes
 │   ├── chapter-01-number-systems.md
 │   ├── chapter-02-polynomials.md
-│   ├── chapter-03-coordinate-geometry.md
-│   ├── chapter-04-linear-equations-two-variables.md
-│   ├── chapter-05-euclids-geometry.md
-│   ├── chapter-06-lines-and-angles.md
-│   ├── chapter-07-triangles.md
-│   ├── chapter-08-quadrilaterals.md
-│   ├── chapter-09-areas-parallelograms-triangles.md
-│   ├── chapter-10-circles.md
-│   ├── chapter-11-constructions.md
-│   ├── chapter-12-herons-formula.md
-│   ├── chapter-13-surface-areas-volumes.md
-│   ├── chapter-14-statistics.md
-│   └── chapter-15-probability.md
+│   └── ... (15 chapters)
 ├── concepts/
 │   ├── concepts-overview.md
 │   └── formulas-reference.md

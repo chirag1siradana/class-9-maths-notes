@@ -2,8 +2,80 @@
 
 This folder is the **PDF Repository** for Class 9 & 10 NCERT chapter PDFs.
 
-Upload chapter PDFs here and the `tools/pdf_to_module.py` script will automatically
-read them and convert their content into **Ultra-Premium Coaching Modules**.
+The PDFs in this repository are handwritten/scanned NCERT notes.
+The `tools/pdf_to_module.py` script reads them using OCR and converts the content
+into **Ultra-Premium Coaching Modules** (saved to `modules/`).
+
+---
+
+## 📥 PDFs in This Repository
+
+The following PDFs are stored on the **`main`** branch of this repository:
+
+| File | Chapter | Pages |
+|------|---------|-------|
+| `01_number_systems_part1.pdf` | Chapter 1: Number Systems | Part 1 |
+| `02_number_systems_part2.pdf` | Chapter 1: Number Systems | Part 2 |
+| `03_number_systems_part3.pdf` | Chapter 1: Number Systems | Part 3 |
+| `04_number_systems_part4.pdf` | Chapter 1: Number Systems | Part 4 |
+| `05_number_systems_part5.pdf` | Chapter 1: Number Systems | Part 5 |
+| `06_number_systems_part6.pdf` | Chapter 1: Number Systems | Part 6 |
+| `07_number_systems_part7.pdf` | Chapter 1: Number Systems | Part 7 |
+| `08_number_systems_part8.pdf` | Chapter 1: Number Systems | Part 8 |
+| `09_number_systems_part9.pdf` | Chapter 1: Number Systems | Part 9 |
+| `10_number_systems_part10.pdf` | Chapter 1: Number Systems | Part 10 |
+
+> **Note:** PDFs are scanned handwritten notes. The tool uses OCR (Tesseract) to read them.
+
+---
+
+## ⚙️ Generating a Module from These PDFs
+
+### Prerequisites
+
+```bash
+# Python packages
+pip install -r requirements.txt
+
+# System OCR engine (required for handwritten/scanned PDFs)
+sudo apt-get install tesseract-ocr tesseract-ocr-eng tesseract-ocr-hin   # Linux
+brew install tesseract                                                     # macOS
+```
+
+### Merge all parts of a chapter and generate the module
+
+```bash
+python tools/pdf_to_module.py --chapter number_systems
+```
+
+### Convert all chapters at once
+
+```bash
+python tools/pdf_to_module.py --all
+```
+
+The generated module is saved to `modules/chapter-01-number-systems-module.md`.
+
+---
+
+## 📛 Naming Convention for New PDFs
+
+When adding PDFs for future chapters, use the format:
+
+```
+<NN>_<chapter_name>_part<N>.pdf
+```
+
+| Example | Chapter |
+|---------|---------|
+| `01_polynomials_part1.pdf` | Chapter 2: Polynomials |
+| `01_coordinate_geometry_part1.pdf` | Chapter 3: Coordinate Geometry |
+
+---
+
+*Success Achievers Institute | Alwar, Rajasthan*
+*"Better Than Others, No One Can Refute"*
+
 
 ---
 
