@@ -4,7 +4,13 @@
 
 This repository contains detailed handwritten notes for **Class 9 NCERT Maths – Chapter 1: Number Systems**, divided into 10 parts.
 
-## 📄 Handwritten Notes (PDF)
+## 📥 Complete Chapter PDF (All Parts Combined)
+
+Download the full chapter in a single file:
+
+👉 [**Number_Systems_Complete.pdf**](Number_Systems_Complete.pdf) *(59 pages)*
+
+## 📄 Individual Parts (PDF)
 
 | Part | Topic | PDF |
 |------|-------|-----|
