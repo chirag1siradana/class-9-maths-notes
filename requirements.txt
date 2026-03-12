@@ -1,0 +1,11 @@
+# PDF reading
+pymupdf>=1.24.14
+
+# Fallback text-based PDF reader
+pdfminer.six>=20251230
+
+# Optional: OCR support for scanned PDFs
+# Uncomment the lines below if your PDFs are scanned images
+# pytesseract>=0.3.10
+# pdf2image>=1.16.3
+# Pillow>=10.0.0
