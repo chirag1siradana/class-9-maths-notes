@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mock IITM-style Python Practice Test</title>
+  <style>
+    /* ===== Reset & Base ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #f0f2f5;
+      color: #222;
+      line-height: 1.6;
+    }
+    a { color: #2563eb; }
+
+    /* ===== Sticky header panel ===== */
+    #sticky-panel {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: #1e3a5f;
+      color: #fff;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: .5rem;
+      padding: .65rem 1.25rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,.3);
+    }
+    #sticky-panel .panel-title { font-weight: 700; font-size: 1.05rem; }
+    #timer {
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: .05em;
+      padding: .15rem .7rem;
+      border-radius: 6px;
+      background: #0f2744;
+      min-width: 90px;
+      text-align: center;
+    }
+    #timer.warning { background: #7f1d1d; animation: pulse .9s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.6} }
+    #score-display {
+      font-size: 1rem;
+      background: #164e8e;
+      padding: .2rem .8rem;
+      border-radius: 6px;
+    }
+    #attempt-info { font-size: .85rem; opacity: .85; }
+
+    /* ===== Page layout ===== */
+    main { max-width: 860px; margin: 1.5rem auto; padding: 0 1rem 3rem; }
+
+    /* ===== Instructions box ===== */
+    .instructions {
+      background: #eff6ff;
+      border-left: 4px solid #2563eb;
+      border-radius: 6px;
+      padding: 1rem 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+    .instructions h2 { margin-bottom: .4rem; color: #1e3a5f; font-size: 1rem; }
+    .instructions ol { padding-left: 1.2rem; font-size: .9rem; }
+    .instructions li { margin-bottom: .2rem; }
+
+    /* ===== Section card ===== */
+    .section-card {
+      background: #fff;
+      border-radius: 10px;
+      padding: 1.4rem 1.5rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 1px 6px rgba(0,0,0,.1);
+    }
+    .section-card h2 {
+      font-size: 1.15rem;
+      color: #1e3a5f;
+      border-bottom: 2px solid #dbeafe;
+      padding-bottom: .4rem;
+      margin-bottom: 1rem;
+    }
+    .section-meta { font-size: .85rem; color: #555; margin-bottom: 1rem; }
+
+    /* ===== Questions ===== */
+    .question { margin-bottom: 1.5rem; }
+    .question-number {
+      font-weight: 700;
+      font-size: .95rem;
+      margin-bottom: .3rem;
+      color: #1e3a5f;
+    }
+    .question-text { margin-bottom: .6rem; font-size: .95rem; }
+    .code-block {
+      background: #1e293b;
+      color: #e2e8f0;
+      font-family: "Courier New", Courier, monospace;
+      font-size: .85rem;
+      padding: .75rem 1rem;
+      border-radius: 6px;
+      white-space: pre;
+      overflow-x: auto;
+      margin-bottom: .6rem;
+    }
+
+    /* ===== MCQ options ===== */
+    .options { display: flex; flex-direction: column; gap: .45rem; }
+    .option-label {
+      display: flex;
+      align-items: flex-start;
+      gap: .5rem;
+      cursor: pointer;
+      padding: .45rem .7rem;
+      border-radius: 6px;
+      border: 1px solid #e2e8f0;
+      transition: background .15s;
+      font-size: .93rem;
+    }
+    .option-label:hover { background: #f0f9ff; }
+    .option-label input[type="radio"] { margin-top: .2rem; flex-shrink: 0; accent-color: #2563eb; }
+
+    /* Result states on options */
+    .option-label.correct-answer  { background: #dcfce7; border-color: #16a34a; }
+    .option-label.wrong-answer    { background: #fee2e2; border-color: #dc2626; }
+    .option-label.selected-correct{ background: #dcfce7; border-color: #16a34a; font-weight: 600; }
+    .option-label.selected-wrong  { background: #fee2e2; border-color: #dc2626; font-weight: 600; }
+
+    /* Per-question verdict */
+    .verdict {
+      margin-top: .4rem;
+      font-size: .85rem;
+      font-weight: 600;
+      display: none;
+    }
+    .verdict.correct { color: #16a34a; display: block; }
+    .verdict.incorrect { color: #dc2626; display: block; }
+    .verdict.unanswered { color: #b45309; display: block; }
+
+    /* ===== Buttons ===== */
+    .btn {
+      display: inline-block;
+      padding: .55rem 1.3rem;
+      font-size: .95rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 7px;
+      cursor: pointer;
+      transition: opacity .2s, transform .1s;
+    }
+    .btn:active { transform: scale(.97); }
+    .btn:disabled { opacity: .45; cursor: not-allowed; }
+    .btn-primary { background: #2563eb; color: #fff; }
+    .btn-primary:hover:not(:disabled) { background: #1d4ed8; }
+    .btn-danger  { background: #dc2626; color: #fff; }
+    .btn-danger:hover:not(:disabled) { background: #b91c1c; }
+    .btn-outline { background: #fff; color: #2563eb; border: 2px solid #2563eb; }
+    .btn-outline:hover:not(:disabled) { background: #eff6ff; }
+
+    /* ===== Summary panel ===== */
+    #summary-panel {
+      display: none;
+      background: #f0fdf4;
+      border: 1.5px solid #16a34a;
+      border-radius: 10px;
+      padding: 1rem 1.3rem;
+      margin-top: 1rem;
+    }
+    #summary-panel h3 { color: #166534; margin-bottom: .5rem; }
+    #summary-panel .summary-score { font-size: 1.6rem; font-weight: 700; color: #15803d; }
+    #summary-panel table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: .8rem;
+      font-size: .88rem;
+    }
+    #summary-panel th, #summary-panel td {
+      border: 1px solid #bbf7d0;
+      padding: .4rem .6rem;
+      text-align: center;
+    }
+    #summary-panel th { background: #dcfce7; color: #166534; }
+    #summary-panel tr.row-correct td { background: #f0fdf4; }
+    #summary-panel tr.row-wrong td { background: #fef2f2; }
+    #summary-panel tr.row-unanswered td { background: #fffbeb; }
+
+    /* ===== Section B/C display-only notice ===== */
+    .display-notice {
+      background: #fefce8;
+      border-left: 3px solid #eab308;
+      padding: .55rem .9rem;
+      border-radius: 5px;
+      font-size: .85rem;
+      color: #78350f;
+      margin-bottom: 1rem;
+    }
+
+    /* ===== Short-answer textarea placeholder ===== */
+    .answer-area {
+      width: 100%;
+      min-height: 80px;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      padding: .55rem .7rem;
+      font-size: .9rem;
+      font-family: inherit;
+      resize: vertical;
+      background: #f8fafc;
+      margin-top: .4rem;
+    }
+    .answer-area:focus { outline: 2px solid #2563eb; background: #fff; }
+
+    /* ===== Footer ===== */
+    footer {
+      text-align: center;
+      padding: 1rem;
+      font-size: .8rem;
+      color: #64748b;
+    }
+
+    /* ===== Responsive ===== */
+    @media(max-width:540px) {
+      #sticky-panel { flex-direction: column; align-items: flex-start; }
+      .section-card { padding: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== Sticky Panel ===== -->
+<div id="sticky-panel" role="banner" aria-label="Test status panel">
+  <span class="panel-title">🐍 IITM Python Mock Test</span>
+  <span id="timer" aria-live="polite" aria-label="Time remaining">90:00</span>
+  <span id="score-display" aria-live="polite">Score: —</span>
+  <span id="attempt-info" aria-live="polite">Section A: 0/10 answered</span>
+</div>
+
+<main>
+
+  <!-- ===== Usage Instructions ===== -->
+  <div class="instructions" role="note" aria-label="Instructions">
+    <h2>📋 How to Use This Test</h2>
+    <ol>
+      <li>The timer starts automatically at 90 minutes.</li>
+      <li><strong>Section A</strong> — Select one option per MCQ, then click <em>Submit Section A</em> to see your score and per-question feedback.</li>
+      <li><strong>Section B &amp; C</strong> — Read the questions and write your answers in a separate notebook or editor (display-only; not auto-graded).</li>
+      <li>When the timer reaches zero, Section A is auto-submitted and locked.</li>
+      <li>Click <em>Reset Test</em> (in Section A) to clear all answers and restart the timer.</li>
+    </ol>
+  </div>
+
+  <!-- ===== Section A ===== -->
+  <section class="section-card" aria-labelledby="secA-heading">
+    <h2 id="secA-heading">Section A — Objective (MCQ + Predict Output)</h2>
+    <p class="section-meta">10 questions × 2 marks = 20 marks | Suggested time: 25 min</p>
+
+    <form id="section-a-form" novalidate>
+
+      <!-- Q1 -->
+      <div class="question" id="q1-block">
+        <p class="question-number">Q1.</p>
+        <p class="question-text">What is the output of:</p>
+        <div class="code-block">x = 5
+y = "5"
+print(type(x), type(y))</div>
+        <fieldset class="options" style="border:none;padding:0;">
+          <legend class="sr-only">Q1 options</legend>
+          <label class="option-label"><input type="radio" name="q1" value="A" />&nbsp;A) <code>&lt;class 'int'&gt; &lt;class 'int'&gt;</code></label>
+          <label class="option-label"><input type="radio" name="q1" value="B" />&nbsp;B) <code>&lt;class 'str'&gt; &lt;class 'str'&gt;</code></label>
+          <label class="option-label"><input type="radio" name="q1" value="C" />&nbsp;C) <code>&lt;class 'int'&gt; &lt;class 'str'&gt;</code></label>
+          <label class="option-label"><input type="radio" name="q1" value="D" />&nbsp;D) Error</label>
+        </fieldset>
+        <p class="verdict" id="v1"></p>
+      </div>
+
+      <!-- Q2 -->
+      <div class="question" id="q2-block">
+        <p class="question-number">Q2.</p>
+        <p class="question-text">Which of the following is a valid variable name in Python?</p>
+        <fieldset class="options" style="border:none;padding:0;">
+          <legend class="sr-only">Q2 options</legend>
+          <label class="option-label"><input type="radio" name="q2" value="A" />&nbsp;A) <code>2name</code></label>
+          <label class="option-label"><input type="radio" name="q2" value="B" />&nbsp;B) <code>my-name</code></label>
+          <label class="option-label"><input type="radio" name="q2" value="C" />&nbsp;C) <code>class</code></label>
+          <label class="option-label"><input type="radio" name="q2" value="D" />&nbsp;D) <code>my_name2</code></label>
+        </fieldset>
+        <p class="verdict" id="v2"></p>
+      </div>
+
+      <!-- Q3 -->
+      <div class="question" id="q3-block">
+        <p class="question-number">Q3.</p>
+        <p class="question-text">Output?</p>
+        <div class="code-block">a = 10
+b = 3
+print(a // b, a % b)</div>
+        <fieldset class="options" style="border:none;padding:0;">
+          <legend class="sr-only">Q3 options</legend>
+          <label class="option-label"><input type="radio" name="q3" value="A" />&nbsp;A) <code>3 1</code></label>
+          <label class="option-label"><input type="radio" name="q3" value="B" />&nbsp;B) <code>3.33 1</code></label>
+          <label class="option-label"><input type="radio" name="q3" value="C" />&nbsp;C) <code>3 0</code></label>
+          <label class="option-label"><input type="radio" name="q3" value="D" />&nbsp;D) <code>4 1</code></label>
+        </fieldset>
+        <p class="verdict" id="v3"></p>
+      </div>
+
+      <!-- Q4 -->
+      <div class="question" id="q4-block">
+        <p class="question-number">Q4.</p>
+        <p class="question-text">What does this print?</p>
+        <div class="code-block">s = "Python"
+print(s[1:4])</div>
+        <fieldset class="options" style="border:none;padding:0;">
+          <legend class="sr-only">Q4 options</legend>
+          <label class="option-label"><input type="radio" name="q4" value="A" />&nbsp;A) <code>Pyt</code></label>
+          <label class="option-label"><input type="radio" name="q4" value="B" />&nbsp;B) <code>yth</code></label>
+          <label class="option-label"><input type="radio" name="q4" value="C" />&nbsp;C) <code>tho</code></label>
+          <label class="option-label"><input type="radio" name="q4" value="D" />&nbsp;D) <code>ytho</code></label>
+        </fieldset>
+        <p class="verdict" id="v4"></p>
+      </div>
+
+      <!-- Q5 -->
+      <div class="question" id="q5-block">
+        <p class="question-number">Q5.</p>
+        <p class="question-text">Which statement is true about strings in Python?</p>
+        <fieldset class="options" style="border:none;padding:0;">
+          <legend class="sr-only">Q5 options</legend>
+          <label class="option-label"><input type="radio" name="q5" value="A" />&nbsp;A) Strings are mutable</label>
+          <label class="option-label"><input type="radio" name="q5" value="B" />&nbsp;B) Strings are immutable</label>
+          <label class="option-label"><input type="radio" name="q5" value="C" />&nbsp;C) Strings cannot be sliced</label>
+          <label class="option-label"><input type="radio" name="q5" value="D" />&nbsp;D) Strings cannot contain spaces</label>
+        </fieldset>
+        <p class="verdict" id="v5"></p>
+      </div>
+
+      <!-- Q6 -->
+      <div class="question" id="q6-block">
+        <p class="question-number">Q6.</p>
+        <p class="question-text">Output?</p>
+        <div class="code-block">x = 7
+if x > 5:
+    y = x * 2
+print(y)</div>
+        <fieldset class="options" style="border:none;padding:0;">
+          <legend class="sr-only">Q6 options</legend>
+          <label class="option-label"><input type="radio" name="q6" value="A" />&nbsp;A) 7</label>
+          <label class="option-label"><input type="radio" name="q6" value="B" />&nbsp;B) 14</label>
+          <label class="option-label"><input type="radio" name="q6" value="C" />&nbsp;C) Error</label>
+          <label class="option-label"><input type="radio" name="q6" value="D" />&nbsp;D) None</label>
+        </fieldset>
+        <p class="verdict" id="v6"></p>
+      </div>
+
+      <!-- Q7 -->
+      <div class="question" id="q7-block">
+        <p class="question-number">Q7.</p>
+        <p class="question-text">Which line is a comment in Python?</p>
+        <fieldset class="options" style="border:none;padding:0;">
+          <legend class="sr-only">Q7 options</legend>
+          <label class="option-label"><input type="radio" name="q7" value="A" />&nbsp;A) <code>/* this is comment */</code></label>
+          <label class="option-label"><input type="radio" name="q7" value="B" />&nbsp;B) <code>// this is comment</code></label>
+          <label class="option-label"><input type="radio" name="q7" value="C" />&nbsp;C) <code># this is comment</code></label>
+          <label class="option-label"><input type="radio" name="q7" value="D" />&nbsp;D) <code>-- this is comment</code></label>
+        </fieldset>
+        <p class="verdict" id="v7"></p>
+      </div>
+
+      <!-- Q8 -->
+      <div class="question" id="q8-block">
+        <p class="question-number">Q8.</p>
+        <p class="question-text">Output?</p>
+        <div class="code-block">print("Hi\nIITM")</div>
+        <fieldset class="options" style="border:none;padding:0;">
+          <legend class="sr-only">Q8 options</legend>
+          <label class="option-label"><input type="radio" name="q8" value="A" />&nbsp;A) <code>Hi\nIITM</code></label>
+          <label class="option-label"><input type="radio" name="q8" value="B" />&nbsp;B) <code>Hi</code> (newline) <code>IITM</code></label>
+          <label class="option-label"><input type="radio" name="q8" value="C" />&nbsp;C) <code>Hi IITM</code></label>
+          <label class="option-label"><input type="radio" name="q8" value="D" />&nbsp;D) Error</label>
+        </fieldset>
+        <p class="verdict" id="v8"></p>
+      </div>
+
+      <!-- Q9 -->
+      <div class="question" id="q9-block">
+        <p class="question-number">Q9.</p>
+        <p class="question-text">What is the type of the expression <code>3 &lt; 5 and 10 != 2</code>?</p>
+        <fieldset class="options" style="border:none;padding:0;">
+          <legend class="sr-only">Q9 options</legend>
+          <label class="option-label"><input type="radio" name="q9" value="A" />&nbsp;A) int</label>
+          <label class="option-label"><input type="radio" name="q9" value="B" />&nbsp;B) float</label>
+          <label class="option-label"><input type="radio" name="q9" value="C" />&nbsp;C) bool</label>
+          <label class="option-label"><input type="radio" name="q9" value="D" />&nbsp;D) str</label>
+        </fieldset>
+        <p class="verdict" id="v9"></p>
+      </div>
+
+      <!-- Q10 -->
+      <div class="question" id="q10-block">
+        <p class="question-number">Q10.</p>
+        <p class="question-text">Output?</p>
+        <div class="code-block">s = "abcde"
+print(s[-2], len(s))</div>
+        <fieldset class="options" style="border:none;padding:0;">
+          <legend class="sr-only">Q10 options</legend>
+          <label class="option-label"><input type="radio" name="q10" value="A" />&nbsp;A) <code>d 5</code></label>
+          <label class="option-label"><input type="radio" name="q10" value="B" />&nbsp;B) <code>e 4</code></label>
+          <label class="option-label"><input type="radio" name="q10" value="C" />&nbsp;C) <code>c 5</code></label>
+          <label class="option-label"><input type="radio" name="q10" value="D" />&nbsp;D) Error</label>
+        </fieldset>
+        <p class="verdict" id="v10"></p>
+      </div>
+
+      <div style="display:flex;gap:.75rem;flex-wrap:wrap;margin-top:1.25rem;">
+        <button type="button" class="btn btn-primary" id="submit-a-btn">Submit Section A</button>
+        <button type="button" class="btn btn-outline" id="reset-btn">Reset Test</button>
+      </div>
+    </form>
+
+    <!-- Summary Panel -->
+    <div id="summary-panel" role="region" aria-live="polite" aria-label="Section A results summary">
+      <h3>📊 Section A — Results Summary</h3>
+      <p>Final Score: <span class="summary-score" id="summary-score-text"></span></p>
+      <table id="summary-table" aria-label="Per-question results">
+        <thead>
+          <tr>
+            <th scope="col">Q#</th>
+            <th scope="col">Your Answer</th>
+            <th scope="col">Correct Answer</th>
+            <th scope="col">Result</th>
+          </tr>
+        </thead>
+        <tbody id="summary-tbody"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ===== Section B ===== -->
+  <section class="section-card" aria-labelledby="secB-heading">
+    <h2 id="secB-heading">Section B — Short Answer / Trace / Debug</h2>
+    <p class="section-meta">5 questions × 4 marks = 20 marks | Suggested time: 30 min</p>
+    <div class="display-notice" role="note">
+      ✏️ Section B is <strong>display-only</strong>. Write your answers in a notebook or separate editor. Use the text areas below for rough notes only (not saved).
+    </div>
+
+    <!-- Q11 -->
+    <div class="question">
+      <p class="question-number">Q11. (Trace) [4 marks]</p>
+      <p class="question-text">For input <code>x = 8</code>, what is printed?</p>
+      <div class="code-block">if x % 2 == 0:
+    if x % 4 == 0:
+        print("A")
+    else:
+        print("B")
+else:
+    print("C")</div>
+      <label for="ans11" class="sr-only">Your answer for Q11</label>
+      <textarea class="answer-area" id="ans11" placeholder="Write your answer / trace here…" aria-label="Answer for Q11"></textarea>
+    </div>
+
+    <!-- Q12 -->
+    <div class="question">
+      <p class="question-number">Q12. (Debugging) [4 marks]</p>
+      <p class="question-text">Find and correct the errors in the following code:</p>
+      <div class="code-block">n = input("Enter a number: ")
+if n % 2 == 0
+    print("Even")
+else
+    print("Odd")</div>
+      <label for="ans12" class="sr-only">Your answer for Q12</label>
+      <textarea class="answer-area" id="ans12" placeholder="Write the corrected code here…" aria-label="Answer for Q12"></textarea>
+    </div>
+
+    <!-- Q13 -->
+    <div class="question">
+      <p class="question-number">Q13. (String operations) [4 marks]</p>
+      <p class="question-text">Write a program to input a string and print:</p>
+      <ol style="padding-left:1.4rem;font-size:.93rem;margin-bottom:.5rem;">
+        <li>First character</li>
+        <li>Last character</li>
+        <li>Length of string</li>
+        <li>Reversed string (using slicing)</li>
+      </ol>
+      <label for="ans13" class="sr-only">Your answer for Q13</label>
+      <textarea class="answer-area" id="ans13" placeholder="Write your Python code here…" aria-label="Answer for Q13"></textarea>
+    </div>
+
+    <!-- Q14 -->
+    <div class="question">
+      <p class="question-number">Q14. (Conditionals) [4 marks]</p>
+      <p class="question-text">Write a program to input three numbers and print the largest.</p>
+      <label for="ans14" class="sr-only">Your answer for Q14</label>
+      <textarea class="answer-area" id="ans14" placeholder="Write your Python code here…" aria-label="Answer for Q14"></textarea>
+    </div>
+
+    <!-- Q15 -->
+    <div class="question">
+      <p class="question-number">Q15. (Type conversion + expression) [4 marks]</p>
+      <p class="question-text">Take radius as input and print area of circle up to 2 decimal places.<br/><small>Use <code>pi = 3.14159</code></small></p>
+      <label for="ans15" class="sr-only">Your answer for Q15</label>
+      <textarea class="answer-area" id="ans15" placeholder="Write your Python code here…" aria-label="Answer for Q15"></textarea>
+    </div>
+  </section>
+
+  <!-- ===== Section C ===== -->
+  <section class="section-card" aria-labelledby="secC-heading">
+    <h2 id="secC-heading">Section C — Programming (Long)</h2>
+    <p class="section-meta">2 questions × 10 marks = 20 marks | Suggested time: 35 min</p>
+    <div class="display-notice" role="note">
+      💻 Section C is <strong>display-only</strong>. Write and run your code in a Python editor or REPL. Use the text areas below for rough notes only (not saved).
+    </div>
+
+    <!-- Q16 -->
+    <div class="question">
+      <p class="question-number">Q16. Menu-driven Mini Calculator [10 marks]</p>
+      <p class="question-text">Write a program that:</p>
+      <ol style="padding-left:1.4rem;font-size:.93rem;margin-bottom:.6rem;">
+        <li>Takes two numbers as input.</li>
+        <li>Takes operator input (<code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>//</code>, <code>%</code>).</li>
+        <li>Performs the operation using <code>if-elif-else</code>.</li>
+        <li>Handles division by zero gracefully.</li>
+      </ol>
+      <p class="question-text"><strong>Sample Input:</strong></p>
+      <div class="code-block">10
+0
+/</div>
+      <p class="question-text"><strong>Sample Output:</strong></p>
+      <div class="code-block">Division by zero not allowed</div>
+      <label for="ans16" class="sr-only">Your answer for Q16</label>
+      <textarea class="answer-area" id="ans16" style="min-height:120px" placeholder="Write your Python code here…" aria-label="Answer for Q16"></textarea>
+    </div>
+
+    <!-- Q17 -->
+    <div class="question">
+      <p class="question-number">Q17. String Analyzer [10 marks]</p>
+      <p class="question-text">Write a program to input a sentence and output:</p>
+      <ol style="padding-left:1.4rem;font-size:.93rem;margin-bottom:.6rem;">
+        <li>Number of vowels</li>
+        <li>Number of consonants</li>
+        <li>Number of digits</li>
+        <li>Number of spaces</li>
+      </ol>
+      <p class="question-text"><strong>Notes:</strong> Treat uppercase/lowercase equally. Ignore punctuation for vowel/consonant counting.</p>
+      <label for="ans17" class="sr-only">Your answer for Q17</label>
+      <textarea class="answer-area" id="ans17" style="min-height:120px" placeholder="Write your Python code here…" aria-label="Answer for Q17"></textarea>
+    </div>
+  </section>
+
+  <!-- ===== Bonus ===== -->
+  <section class="section-card" aria-labelledby="secBonus-heading">
+    <h2 id="secBonus-heading">Bonus — Optional (+5 practice marks, not part of 60)</h2>
+    <p class="section-meta">Not auto-graded | For extra practice</p>
+    <div class="display-notice" role="note">
+      ⭐ Bonus question is optional and display-only. Write your solution in a Python file.
+    </div>
+    <div class="question">
+      <p class="question-number">Q18. Calendar Module</p>
+      <p class="question-text">Using the <code>calendar</code> module, input a month and year and print that month's calendar. Also print whether the year is a leap year or not.</p>
+      <label for="ans18" class="sr-only">Your answer for Q18</label>
+      <textarea class="answer-area" id="ans18" placeholder="Write your Python code here…" aria-label="Answer for Q18"></textarea>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>IITM-style Python Mock Test — Section A auto-graded in-browser | Sections B, C &amp; Bonus: self-evaluated</p>
+</footer>
+
+<script>
+  /* ============================================================
+     Answer Key for Section A
+     ============================================================ */
+  const ANSWER_KEY = {
+    q1:  "C",  // <class 'int'> <class 'str'>
+    q2:  "D",  // my_name2
+    q3:  "A",  // 3 1
+    q4:  "B",  // yth
+    q5:  "B",  // Strings are immutable
+    q6:  "B",  // 14
+    q7:  "C",  // # this is comment
+    q8:  "B",  // Hi \n IITM
+    q9:  "C",  // bool
+    q10: "A"   // d 5
+  };
+
+  const TOTAL_QUESTIONS = 10;
+  const MARKS_PER_Q     = 2;
+  const TOTAL_TIME_SEC  = 90 * 60;   // 90 minutes
+
+  let timerInterval  = null;
+  let secondsLeft    = TOTAL_TIME_SEC;
+  let submitted      = false;
+
+  /* ============================================================
+     Timer
+     ============================================================ */
+  function formatTime(secs) {
+    const m = Math.floor(secs / 60).toString().padStart(2, "0");
+    const s = (secs % 60).toString().padStart(2, "0");
+    return m + ":" + s;
+  }
+
+  function startTimer() {
+    const timerEl = document.getElementById("timer");
+    timerEl.textContent = formatTime(secondsLeft);
+    timerInterval = setInterval(function () {
+      secondsLeft--;
+      timerEl.textContent = formatTime(secondsLeft);
+      if (secondsLeft <= 300) timerEl.classList.add("warning");
+      if (secondsLeft <= 0) {
+        clearInterval(timerInterval);
+        timerEl.textContent = "00:00";
+        if (!submitted) {
+          submitSectionA(true);
+        }
+      }
+    }, 1000);
+  }
+
+  /* ============================================================
+     Attempt counter (live update as user picks options)
+     ============================================================ */
+  function updateAttemptInfo() {
+    let answered = 0;
+    for (let i = 1; i <= TOTAL_QUESTIONS; i++) {
+      if (document.querySelector('input[name="q' + i + '"]:checked')) answered++;
+    }
+    const unanswered = TOTAL_QUESTIONS - answered;
+    document.getElementById("attempt-info").textContent =
+      "Section A: " + answered + "/" + TOTAL_QUESTIONS + " answered" +
+      (unanswered > 0 ? " (" + unanswered + " unanswered)" : "");
+  }
+
+  document.getElementById("section-a-form").addEventListener("change", function (e) {
+    if (e.target.type === "radio") updateAttemptInfo();
+  });
+
+  /* ============================================================
+     Submit Section A
+     ============================================================ */
+  function submitSectionA(isAutoSubmit) {
+    if (submitted) return;
+    submitted = true;
+
+    if (timerInterval) clearInterval(timerInterval);
+
+    if (isAutoSubmit) {
+      alert("⏰ Time is up! Section A has been auto-submitted.");
+    }
+
+    let score = 0;
+    const tbody = document.getElementById("summary-tbody");
+    tbody.innerHTML = "";
+
+    for (let i = 1; i <= TOTAL_QUESTIONS; i++) {
+      const name      = "q" + i;
+      const correct   = ANSWER_KEY[name];
+      const selected  = document.querySelector('input[name="' + name + '"]:checked');
+      const chosen    = selected ? selected.value : null;
+      const verdictEl = document.getElementById("v" + i);
+      const block     = document.getElementById("q" + i + "-block");
+
+      /* Colour all option labels */
+      block.querySelectorAll(".option-label").forEach(function (label) {
+        const val = label.querySelector("input").value;
+        if (val === correct && val === chosen) {
+          label.classList.add("selected-correct");
+        } else if (val === correct) {
+          label.classList.add("correct-answer");
+        } else if (val === chosen) {
+          label.classList.add("selected-wrong");
+        }
+      });
+
+      /* Per-question verdict */
+      if (!chosen) {
+        verdictEl.textContent = "⚠ Not attempted — Correct answer: " + correct;
+        verdictEl.className   = "verdict unanswered";
+      } else if (chosen === correct) {
+        verdictEl.textContent = "✔ Correct! (+2 marks)";
+        verdictEl.className   = "verdict correct";
+        score += MARKS_PER_Q;
+      } else {
+        verdictEl.textContent = "✘ Incorrect. Correct answer: " + correct;
+        verdictEl.className   = "verdict incorrect";
+      }
+
+      /* Summary table row */
+      const row = document.createElement("tr");
+      if (!chosen)          row.className = "row-unanswered";
+      else if (chosen === correct) row.className = "row-correct";
+      else                  row.className = "row-wrong";
+
+      const resultText = !chosen ? "Not attempted" : (chosen === correct ? "✔ Correct" : "✘ Incorrect");
+      row.innerHTML =
+        "<td>Q" + i + "</td>" +
+        "<td>" + (chosen || "—") + "</td>" +
+        "<td>" + correct + "</td>" +
+        "<td>" + resultText + "</td>";
+      tbody.appendChild(row);
+    }
+
+    /* Disable all radios */
+    document.querySelectorAll('#section-a-form input[type="radio"]').forEach(function (r) {
+      r.disabled = true;
+    });
+
+    /* Disable submit button */
+    document.getElementById("submit-a-btn").disabled = true;
+
+    /* Update sticky panel */
+    document.getElementById("score-display").textContent =
+      "Score: " + score + "/" + (TOTAL_QUESTIONS * MARKS_PER_Q);
+    updateAttemptInfo();
+
+    /* Show summary */
+    document.getElementById("summary-score-text").textContent =
+      score + " / " + (TOTAL_QUESTIONS * MARKS_PER_Q) + " marks";
+    const panel = document.getElementById("summary-panel");
+    panel.style.display = "block";
+    panel.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  /* ============================================================
+     Reset Test
+     ============================================================ */
+  function resetTest() {
+    if (submitted) {
+      if (!confirm("Reset the test? This will clear all your answers and restart the timer.")) return;
+    }
+
+    submitted   = false;
+    secondsLeft = TOTAL_TIME_SEC;
+    if (timerInterval) clearInterval(timerInterval);
+
+    /* Re-enable and uncheck all radios */
+    document.querySelectorAll('#section-a-form input[type="radio"]').forEach(function (r) {
+      r.disabled = false;
+      r.checked  = false;
+    });
+
+    /* Remove result classes from option labels */
+    document.querySelectorAll(".option-label").forEach(function (l) {
+      l.classList.remove("correct-answer","wrong-answer","selected-correct","selected-wrong");
+    });
+
+    /* Hide verdicts */
+    document.querySelectorAll(".verdict").forEach(function (v) {
+      v.className = "verdict";
+      v.textContent = "";
+    });
+
+    /* Hide summary */
+    document.getElementById("summary-panel").style.display = "none";
+
+    /* Re-enable submit button */
+    document.getElementById("submit-a-btn").disabled = false;
+
+    /* Reset timer display */
+    const timerEl = document.getElementById("timer");
+    timerEl.textContent = formatTime(secondsLeft);
+    timerEl.classList.remove("warning");
+
+    /* Reset sticky panel */
+    document.getElementById("score-display").textContent = "Score: —";
+    document.getElementById("attempt-info").textContent  =
+      "Section A: 0/" + TOTAL_QUESTIONS + " answered";
+
+    /* Restart timer */
+    startTimer();
+
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  /* ============================================================
+     Boot
+     ============================================================ */
+  document.getElementById("submit-a-btn").addEventListener("click", function () { submitSectionA(false); });
+  document.getElementById("reset-btn").addEventListener("click", resetTest);
+  startTimer();
+  updateAttemptInfo();
+</script>
+
+</body>
+</html>
