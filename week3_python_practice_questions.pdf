@@ -1,0 +1,267 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [4 0 R 6 0 R 8 0 R] /Count 3 >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+4 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 5 0 R >>
+endobj
+5 0 obj
+<< /Length 2797 >>
+stream
+BT
+/F1 11 Tf
+50 800 Td
+14 TL
+(WEEK 3 PYTHON PRACTICE SET \(Lectures 27-40\)) Tj
+T*
+(Goal: Master while/for loops, loop control, nested loops, and formatted printing.) Tj
+T*
+() Tj
+T*
+(SECTION A - BASICS \(Warm-Up\)) Tj
+T*
+(Q1. Print numbers from 1 to 20 using a while loop.) Tj
+T*
+(Q2. Print numbers from 20 to 1 using a while loop.) Tj
+T*
+(Q3. Print all even numbers from 1 to 50 using a for loop.) Tj
+T*
+(Q4. Print all odd numbers from 1 to 50 using a for loop.) Tj
+T*
+(Q5. Print the multiplication table of 7 from 7 x 1 to 7 x 10.) Tj
+T*
+(Q6. Take n as input and print numbers from 1 to n in one line using end=' '.) Tj
+T*
+(Q7. Print 1,2,3,...,10 using sep=',' in a single print statement.) Tj
+T*
+(Q8. Print your birth date in dd-mm-yyyy format using sep='-'.) Tj
+T*
+() Tj
+T*
+(SECTION B - WHILE LOOP PRACTICE) Tj
+T*
+(Q9. Find factorial of a given number n using while loop.) Tj
+T*
+(Q10. Count digits in an integer using while loop.) Tj
+T*
+(Q11. Reverse digits of a number using while loop.) Tj
+T*
+(Q12. Check if a number is palindrome using while loop.) Tj
+T*
+(Q13. Sum of digits of a number using while loop.) Tj
+T*
+(Q14. Product of digits of a number using while loop.) Tj
+T*
+(Q15. Print first n natural numbers and their squares using while loop.) Tj
+T*
+(Q16. Keep taking input until user enters 0, then print sum of all entered numbers.) Tj
+T*
+(Q17. Keep taking input until a negative number is entered; print count of positive entries.) Tj
+T*
+(Q18. Find HCF \(GCD\) of two numbers using repeated subtraction in while loop.) Tj
+T*
+() Tj
+T*
+(SECTION C - FOR LOOP + RANGE MASTERY) Tj
+T*
+(Q19. Print numbers from 5 to 50 with step 5.) Tj
+T*
+(Q20. Print numbers from 100 down to 0 with step -10.) Tj
+T*
+(Q21. Print cubes of numbers from 1 to n.) Tj
+T*
+(Q22. Find sum of first n natural numbers using for loop.) Tj
+T*
+(Q23. Find sum of squares of first n natural numbers.) Tj
+T*
+(Q24. Count how many numbers from 1 to n are divisible by 3 and 5.) Tj
+T*
+(Q25. Given a string, count vowels using a for loop.) Tj
+T*
+(Q26. Given a string, print each character with its index.) Tj
+T*
+(Q27. Given a list of marks, print only marks >= 40 and count how many passed.) Tj
+T*
+(Q28. Create multiplication tables from 2 to 5 using nested for loops.) Tj
+T*
+() Tj
+T*
+(SECTION D - FORMATTED PRINTING) Tj
+T*
+(Q29. Print table of a number using f-string format: '{num} x {i} = {num*i}'.) Tj
+T*
+(Q30. Print pi value upto 2, 3, and 5 decimal places using format specifiers.) Tj
+T*
+(Q31. Print a right-aligned number column of width 5 for numbers 1 to 15.) Tj
+T*
+(Q32. Re-do Q29 using .format\(\) method.) Tj
+T*
+(Q33. Re-do Q29 using %d formatting.) Tj
+T*
+(Q34. Print student report lines like: Name: Ravi | Marks: 086 | Grade: A) Tj
+T*
+(     \(use width/padding so all marks align in a neat column\).) Tj
+T*
+() Tj
+ET
+endstream
+endobj
+6 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 7 0 R >>
+endobj
+7 0 obj
+<< /Length 2887 >>
+stream
+BT
+/F1 11 Tf
+50 800 Td
+14 TL
+(SECTION E - NESTED LOOPS \(PATTERNS + LOGIC\)) Tj
+T*
+(Q35. Print a 5x5 star square pattern.) Tj
+T*
+(Q36. Print right triangle star pattern of height n.) Tj
+T*
+(Q37. Print inverted right triangle star pattern of height n.) Tj
+T*
+(Q38. Print number pattern:) Tj
+T*
+(     1) Tj
+T*
+(     1 2) Tj
+T*
+(     1 2 3) Tj
+T*
+(     ... upto n rows) Tj
+T*
+(Q39. Print multiplication grid \(1 to 5\) where each row shows products with row number.) Tj
+T*
+(Q40. Count total iterations when outer loop runs n times and inner loop runs m times.) Tj
+T*
+(     Verify by printing a counter value.) Tj
+T*
+() Tj
+T*
+(SECTION F - BREAK / CONTINUE / PASS) Tj
+T*
+(Q41. Search for first multiple of 17 between 1 and n. Stop when found \(use break\).) Tj
+T*
+(Q42. Print numbers 1 to 50 but skip multiples of 4 \(use continue\).) Tj
+T*
+(Q43. Input numbers until 999 appears. Ignore negative numbers, sum others.) Tj
+T*
+(Q44. Menu program \(1:Add, 2:Subtract, 3:Exit\) using while True + break.) Tj
+T*
+(Q45. Create a loop skeleton for future logic using pass in a conditional block.) Tj
+T*
+() Tj
+T*
+(SECTION G - ADVANCED MIXED CHALLENGES) Tj
+T*
+(Q46. Prime check for a number n using loop + break optimization.) Tj
+T*
+(Q47. Print all primes between 2 and n.) Tj
+T*
+(Q48. Armstrong number check for a 3-digit number.) Tj
+T*
+(Q49. Generate Fibonacci series up to n terms using loop.) Tj
+T*
+(Q50. Keep taking marks of students until -1; print average, highest, lowest.) Tj
+T*
+(Q51. Simulate ATM pin attempts: allow max 3 tries, then lock account.) Tj
+T*
+(Q52. Build a mini number analyzer:) Tj
+T*
+(     Input numbers until 0; at end print count, sum, average, even count, odd count.) Tj
+T*
+(Q53. Build a formatted times table booklet from 2 to 12 \(clean aligned output\).) Tj
+T*
+(Q54. Pattern challenge \(nested loop\): hollow rectangle of stars \(r x c\).) Tj
+T*
+(Q55. Pattern challenge: pyramid of stars with centered alignment.) Tj
+T*
+(Q56. Bonus: Compare running totals using while vs for for the same task,) Tj
+T*
+(     and write 3 lines on when each loop is better.) Tj
+T*
+() Tj
+T*
+(==================== HINT SECTION \(Use only after attempting\) ====================) Tj
+T*
+(H1. For while loops, always update loop variable, otherwise infinite loop.) Tj
+T*
+(H2. Factorial logic: start ans=1; multiply ans by current number till 1.) Tj
+T*
+(H3. Digit extraction: last = n % 10, remove last using n //= 10.) Tj
+T*
+(H4. Reverse number: rev = rev*10 + last_digit.) Tj
+T*
+(H5. Palindrome number: compare original with reversed.) Tj
+T*
+(H6. range\(start, end, step\): end value is excluded.) Tj
+T*
+(H7. Descending loop in for uses negative step.) Tj
+T*
+(H8. For aligned printing use: {value:5d}, {value:03d}, {pi:.2f}.) Tj
+T*
+(H9. In nested loops, outer controls rows, inner controls columns.) Tj
+T*
+(H10. Pattern questions: print each row in inner loop, then print\(\) for new line.) Tj
+ET
+endstream
+endobj
+8 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 9 0 R >>
+endobj
+9 0 obj
+<< /Length 767 >>
+stream
+BT
+/F1 11 Tf
+50 800 Td
+14 TL
+(H11. break exits loop immediately; continue skips only current iteration.) Tj
+T*
+(H12. pass is placeholder; no output/effect.) Tj
+T*
+(H13. Prime check optimization: test divisors from 2 to int\(n**0.5\).) Tj
+T*
+(H14. Keep counters for analytics tasks: count, sum, even_count, max, min.) Tj
+T*
+(H15. Sentinel-input pattern: loop until special value \(0, -1, 999 etc.\).) Tj
+T*
+(H16. For menu programs, use while True and break on Exit choice.) Tj
+T*
+(H17. For clean table outputs, combine loops + formatted printing.) Tj
+T*
+(H18. Attempt in this order: A->B->C->D->E->F->G.) Tj
+T*
+(H19. Re-solve wrong questions after 24 hours for mastery.) Tj
+T*
+(H20. Rule for mastery: write code, dry-run, test edge cases \(0,1,negative,large\).) Tj
+ET
+endstream
+endobj
+xref
+0 10
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000127 00000 n 
+0000000197 00000 n 
+0000000323 00000 n 
+0000003172 00000 n 
+0000003298 00000 n 
+0000006237 00000 n 
+0000006363 00000 n 
+trailer
+<< /Size 10 /Root 1 0 R >>
+startxref
+7181
+%%EOF
