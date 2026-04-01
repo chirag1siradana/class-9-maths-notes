@@ -1,0 +1,109 @@
+Python Practice: for-each + "if ch in i"
+
+Instructions:
+- Use `for ch in text` style loops wherever possible.
+- Prefer conditions like `if ch in vowels`, `if ch in word`, etc.
+- Try without using index-based loops first.
+- For list tasks, use operations like `append()` to build results.
+
+------------------------------------------------------------
+Level 1: Basics (for-each over string)
+------------------------------------------------------------
+1) Given a string, count total vowels using:
+   - `for ch in text`
+   - `if ch in "aeiouAEIOU"`
+
+2) Count total consonants in a string (ignore spaces, digits, symbols).
+
+3) Print only uppercase letters from a mixed string.
+
+4) Count how many digits are present in a string.
+
+5) Build a new string containing only alphabets from input.
+
+6) Check whether a given character `ch` appears in a word using for-each.
+
+7) Count how many times character `ch` appears in a word.
+
+8) Print characters that are present in `"aeiou"` from the input string.
+
+------------------------------------------------------------
+Level 2: Membership logic ("if ch in i" style)
+------------------------------------------------------------
+9) Given list of words, print words that contain letter `'a'`.
+   Example idea: `for i in words: if 'a' in i: ...`
+
+10) From list of words, create a new list of words containing at least one vowel.
+    Use `append()`.
+
+11) Given list of strings, print strings that contain any digit.
+    (Hint: loop chars inside each string and check `if ch in "0123456789"`.)
+
+12) Count words that contain substring `"py"` (case-insensitive).
+
+13) Given a sentence split into words, collect words that contain both `'a'` and `'e'`.
+
+14) From list of names, create list of names containing letter `'r'` (ignore case).
+
+15) Given list of emails, collect valid ones that contain `'@'` and `'.'`.
+
+------------------------------------------------------------
+Level 3: Build new results using append/string ops
+------------------------------------------------------------
+16) Remove all vowels from a string and build a new string result.
+
+17) Keep only vowels from a string and build a new string result.
+
+18) Given list of words, build list of reversed words (manual loop, not slicing).
+
+19) From a sentence, build list of words longer than 4 characters using `append()`.
+
+20) Given list of strings, build a list of strings that are palindromes.
+
+21) Given a word, build frequency dictionary manually using for-each and membership:
+    - if char already in dict, increment
+    - else set to 1
+
+22) Given list of words, build list of words that start and end with same character.
+
+------------------------------------------------------------
+Level 4: Mixed challenge
+------------------------------------------------------------
+23) Given paragraph text, count:
+    - vowels
+    - consonants
+    - digits
+    - spaces
+    - special characters
+
+24) Given list of passwords, classify each as:
+    - Strong: has uppercase, lowercase, digit, special char
+    - Weak: otherwise
+    (Use nested for-each and membership checks.)
+
+25) Given two strings, build a new string of common characters (no duplicates).
+
+26) Given list of words, group them into two lists:
+    - words containing vowels
+    - words without vowels
+
+27) Given a sentence, replace vowels with `*` and return new string.
+
+28) Given list of filenames, collect only `.py` files (case-insensitive).
+
+29) Given string, find first non-repeating character.
+
+30) Given list of words, return words where every character is unique.
+
+------------------------------------------------------------
+Bonus Re-attempt Rules
+------------------------------------------------------------
+- Solve each question in two ways when possible:
+  1) direct membership (`if ch in set_or_string`)
+  2) explicit comparisons (`if ch == 'a' or ch == 'e' ...`)
+- For list output questions, always try one version with `append()`.
+- After solving, test with:
+  - empty string/list
+  - only spaces
+  - mixed uppercase/lowercase
+  - symbols and digits
