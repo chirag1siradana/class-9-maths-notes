@@ -1,0 +1,200 @@
+WEEK 4 Python Practice Questions (IITM-style)
+Topic Scope Used: Lists, Empty List, type(my_list), and Functions with Lists
+
+Important Scope Note:
+- As per provided Week 4 text, this set is focused on LISTS.
+- Tuple, set, and dictionary theory is not included in this sheet.
+
+------------------------------------------------------------
+Section A: Core Concept Checks
+------------------------------------------------------------
+1) Create a list: ['apple', 5, True]. Print:
+   - the list
+   - type of the list
+   - type of each item
+   Solvable methods possible:
+   - direct index access + type()
+   - loop through list + type()
+
+2) Create two empty lists using both methods from notes.
+   Check both with type().
+   Solvable methods possible:
+   - list()
+   - []
+
+3) Given L = [10, 20, 30, 40, 50], print:
+   - first element
+   - last element
+   - middle element(s)
+   Solvable methods possible:
+   - positive indexing
+   - negative indexing
+
+4) Check mutability:
+   Given L = [1, 2, 3], change second item to 99 and print before/after.
+   Solvable methods possible:
+   - direct index assignment
+   - loop-based conditional replacement
+
+------------------------------------------------------------
+Section B: Output-Based Questions
+------------------------------------------------------------
+5) Predict output:
+   L = [2, 4, 6]
+   L.append(8)
+   print(L[1], L[-1], type(L))
+
+6) Predict output:
+   L = []
+   L.append('x')
+   L.append(5)
+   print(L, len(L), type(L[0]), type(L[1]))
+
+7) Predict output:
+   L = [10, 20, 30, 40]
+   print(L[1:3], L[:2], L[2:])
+
+8) Predict output:
+   L = [1, 2, 3]
+   M = L
+   M[0] = 100
+   print(L, M)
+
+------------------------------------------------------------
+Section C: Problem Solving (Multiple Methods)
+------------------------------------------------------------
+9) Sum all elements in a numeric list.
+   Solvable methods possible:
+   - for loop accumulator
+   - while loop with index
+   - built-in sum()
+
+10) Count how many even and odd numbers are in a list.
+    Solvable methods possible:
+    - for loop + if n % 2 == 0
+    - list comprehension + len()
+
+11) Find maximum and minimum value from a list.
+    Solvable methods possible:
+    - manual comparison loop
+    - max() and min()
+
+12) Remove duplicates while keeping first occurrence order.
+    Solvable methods possible:
+    - membership check with new list
+    - nested loop with manual uniqueness check
+
+13) Reverse a list.
+    Solvable methods possible:
+    - slicing [::-1]
+    - reverse() method
+    - manual loop build
+
+14) Rotate list right by 1 position.
+    Example: [1,2,3,4] -> [4,1,2,3]
+    Solvable methods possible:
+    - slicing
+    - pop() + insert(0, ...)
+
+------------------------------------------------------------
+Section D: Functions Part (List-focused)
+------------------------------------------------------------
+15) Write a function list_info(L) that returns:
+    - length
+    - first element (if exists)
+    - last element (if exists)
+    Solvable methods possible:
+    - conditional checks + indexing
+    - return a list of required values
+
+16) Write a function count_type_items(L) that returns:
+    - number of int values
+    - number of str values
+    - number of bool values
+    Solvable methods possible:
+    - isinstance() checks in loop
+    - type(x) == int style checks (careful with bool vs int)
+
+17) Write a function safe_append(L, value) that appends value and returns updated list.
+    Test with empty list and non-empty list.
+    Solvable methods possible:
+    - append() directly
+    - concatenation with [value]
+
+18) Write a function get_middle(L):
+    - if odd length: return middle element
+    - if even length: return two middle elements
+    Solvable methods possible:
+    - len() and index math
+    - slicing approach
+
+19) Write a function split_even_odd(L) returning two lists: evens, odds.
+    Solvable methods possible:
+    - single pass append into two lists
+    - list comprehensions
+
+20) Write a function remove_value_all(L, x) to remove all occurrences of x.
+    Solvable methods possible:
+    - loop build new list
+    - while x in L: remove(x)
+
+------------------------------------------------------------
+Section E: IITM Practice Level (Mixed + Edge Cases)
+------------------------------------------------------------
+21) Given mixed list [1, '2', True, 3.0, 'apple', False], count each type category.
+    (int, str, bool, float, others)
+    Solvable methods possible:
+    - separate counters in one loop
+    - counters using index positions in a result list
+
+22) Given L = [[], [1,2], [], [3], []], count empty sublists.
+    Solvable methods possible:
+    - compare each item with []
+    - len(item) == 0
+
+23) Given two lists A and B, produce:
+    - common elements
+    - elements only in A
+    - elements only in B
+    Solvable methods possible:
+    - membership loops with new lists
+    - nested loops + manual unique checks
+
+24) Given a list of marks, return normalized list where each mark is divided by max mark.
+    Solvable methods possible:
+    - loop + append
+    - list comprehension
+
+25) Debug challenge:
+    L = [1,2,3]
+    for i in L:
+        if i == 2:
+            L.remove(i)
+    print(L)
+    Explain issue and give corrected approach.
+    Solvable methods possible:
+    - iterate over copy
+    - build filtered list
+
+26) Time-think challenge:
+    Which approach is better for very large list duplicate removal and why?
+    - list membership each time
+    - helper structure for fast lookup
+
+------------------------------------------------------------
+Hints (Read only after trying)
+------------------------------------------------------------
+H1) Empty list can be created by [] or list().
+H2) type(my_list) gives <class 'list'>.
+H3) Negative index starts from end: -1 is last item.
+H4) Lists are mutable, so item assignment works.
+H5) For safe first/last access, check len(L) > 0.
+H6) For mixed types, isinstance() is useful.
+H7) bool is a subclass of int in Python; handle counting carefully.
+H8) Removing while iterating same list may skip elements.
+H9) For order-preserving duplicate removal, use a "seen" check.
+H10) Always test edge cases:
+     - empty list
+     - one-element list
+     - all same values
+     - mixed positive/negative values
