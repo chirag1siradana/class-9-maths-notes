@@ -1,0 +1,28 @@
+WEEK 4 - PYTHON LISTS PRACTICE QUESTIONS
+
+Topic:
+Lists: An ordered and mutable collection of items.
+Example: my_list = ['apple', 5, True]
+Empty list: list() or []
+type(my_list) ->
+
+1. What is a list in Python?
+2. Is a list ordered or unordered?
+3. Is a list mutable or immutable?
+4. Write a list with these items: 'apple', 5, True.
+5. Create an empty list using square brackets.
+6. Create an empty list using list().
+7. What will type(['apple', 5, True]) return?
+8. What will type([]) return?
+9. Can a list store different data types together? Write one example.
+10. What is the index of the first element in a list?
+11. If my_list = ['a', 'b', 'c'], what is my_list[1]?
+12. If my_list = [10, 20, 30, 40], what is my_list[-1]?
+13. Write code to add 'banana' to my_list = ['apple'].
+14. Write code to change my_list = [1, 2, 3] so that 2 becomes 20.
+15. Write code to remove True from my_list = ['apple', 5, True].
+16. What is the output of len([4, 5, 6, 7])?
+17. What is the output of [1, 2] + [3, 4]?
+18. What is the output of [0] * 5?
+19. Write code to check whether 'apple' is in ['banana', 'apple', 'mango'].
+20. What error may occur if you access an index that does not exist in a list?
