@@ -1,0 +1,104 @@
+Dictionary Frequency Count Practice Questions
+
+Instructions:
+- Solve each using a dictionary for counting.
+- Try writing clean, readable Python code.
+- Attempt all questions before checking hints at the end.
+
+------------------------------------------------------------
+Section A: Basics
+------------------------------------------------------------
+1) Count frequency of each number in:
+   [1, 2, 2, 3, 1, 4, 2, 3, 3]
+
+2) Count frequency of each character in:
+   "banana"
+
+3) Count frequency of each word in:
+   "cat dog cat bird dog cat"
+
+4) Count character frequency in:
+   "Hello World"
+   (Ignore spaces)
+
+5) Count character frequency in:
+   "Apple apple APPLE"
+   (Case-insensitive count)
+
+------------------------------------------------------------
+Section B: Intermediate
+------------------------------------------------------------
+6) Count word frequency in:
+   "Hi, hi! How are you? hi..."
+   (Ignore punctuation and case)
+
+7) Given marks list:
+   [90, 80, 90, 70, 80, 90, 60]
+   Create frequency dictionary and print the most frequent mark.
+
+8) Given paragraph text, count word frequency and print only words
+   whose frequency is >= 2.
+
+9) Given a frequency dictionary, find all keys with maximum frequency
+   (handle ties).
+
+10) Given:
+    list1 = [1, 2, 2, 3, 4]
+    list2 = [2, 3, 3, 4, 4]
+    Create separate frequency dictionaries and then a combined one.
+
+------------------------------------------------------------
+Section C: Challenge
+------------------------------------------------------------
+11) From a sentence, count frequency of word lengths.
+    Example output format:
+    {2: 3, 4: 5, 7: 1}
+
+12) Given a list of names, count first-letter frequency
+    (case-insensitive).
+
+13) Count how many times each digit (0-9) appears in a mixed string:
+    "a1b2c3d1e0f9g2"
+
+14) Find least frequent character(s) from a string
+    (ignore spaces, case-insensitive).
+
+15) Build a reusable function:
+    frequency_count(data)
+    that works for both list input and string input.
+
+------------------------------------------------------------
+Solution Hints (Read only after trying)
+------------------------------------------------------------
+H1) Standard pattern:
+    freq = {}
+    for item in data:
+        freq[item] = freq.get(item, 0) + 1
+
+H2) For case-insensitive counting, convert text to lower() first.
+
+H3) For punctuation removal, use simple filtering:
+    keep only alphanumeric chars and spaces before split().
+
+H4) For most frequent item:
+    max_count = max(freq.values())
+    then collect key(s) where value == max_count.
+
+H5) For least frequent item:
+    min_count = min(freq.values())
+    then collect key(s) where value == min_count.
+
+H6) For combined frequencies of two lists:
+    either count on (list1 + list2),
+    or build freq1/freq2 and then merge by summing keys.
+
+H7) For word frequency from sentence:
+    normalize case -> clean punctuation -> split() -> count.
+
+H8) For word-length frequency:
+    use len(word) as dictionary key.
+
+H9) In strings, spaces are also characters unless ignored explicitly.
+
+H10) Always test edge cases:
+     empty input, single item, duplicates, mixed case, punctuation.

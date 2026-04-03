@@ -1,0 +1,257 @@
+WEEK 4 Python Practice Questions (IITM-style)
+Topic Scope Used: Lists · Tuples · Sets · Dictionaries · List Comprehensions · Functions
+
+------------------------------------------------------------
+Section A: Lists (Core + Methods + Slicing + Operations)
+------------------------------------------------------------
+1) Create a mixed list ['apple', 5, True]. Print:
+   - the list
+   - type of the list
+   - type of each element
+   Solvable methods possible:
+   - direct indexing + type()
+   - loop through list + type()
+
+2) Create empty lists using both methods and verify type:
+   - []
+   - list()
+
+3) Given L = [10, 20, 30, 40, 50], print first, last, and middle element(s).
+   Solvable methods possible:
+   - positive indexing
+   - negative indexing + len()
+
+4) Using L = [1,2,3,2,4], perform:
+   - append(9)
+   - insert(1, 99)
+   - extend([7,8])
+   - remove first 2
+   - pop() and pop(2)
+   Print list after each operation.
+
+5) Predict output:
+   L = [3, 1, 2]
+   x = L.sort()
+   y = sorted(L, reverse=True)
+   print(L, x, y)
+
+6) Predict output:
+   L = [0,1,2,3,4,5,6,7,8,9]
+   print(L[0:8:2], L[:4], L[-3:], L[::-1])
+
+7) Given A=[1,2,3], B=[4,5,6], write code for:
+   - concatenation
+   - replication
+   - membership check
+   - equality check
+   - element-wise comparison sample
+
+8) Fix this wrong expectation in comments and explain:
+   a = [1,2,3]
+   print(a * 3)   # expected: [1,2,1,2,1,2]
+
+9) Matrix question:
+   M = [[1,2,3],[4,5,6]]
+   - find number of rows, columns
+   - print M[1][2]
+   - print all elements row-wise
+
+10) Join question:
+    L = ['I', 'like', 'apples']
+    produce outputs for ' '.join(L), '-'.join(L), ''.join(L)
+    Also test what happens if L contains a non-string item.
+
+------------------------------------------------------------
+Section B: Tuples
+------------------------------------------------------------
+11) Create:
+    - normal tuple
+    - empty tuple
+    - singleton tuple
+    Print type of each.
+
+12) Explain why (1) is not a tuple but (1,) is.
+
+13) Given T = (1,2,1,4), find:
+    - count of 1
+    - index of first 1
+
+14) Perform tuple operations with A=(1,2,3), B=(4,5,6):
+    - A+B
+    - A*3
+    - slicing
+    - membership
+
+15) Immutability check:
+    Try changing T[0] in code and explain the error.
+
+------------------------------------------------------------
+Section C: Sets
+------------------------------------------------------------
+16) Create a set with duplicates and print result.
+    Example input elements: [1,2,2,3,3,3]
+
+17) Show correct empty set creation and explain why {} is not empty set.
+
+18) Which of these can be set elements? Explain:
+    - 10
+    - 'hello'
+    - (1,2)
+    - [1,2]
+    - {1,2}
+    - {'a':1}
+
+19) For set1={1,2,3,4}, set2={1,3,5}, compute:
+    - union
+    - intersection
+    - difference
+    - symmetric difference
+    - subset/superset checks
+
+20) Demonstrate difference between remove() and discard() when element is missing.
+
+21) Predict behavior of set.pop() repeatedly on same set.
+    Why can output order vary?
+
+22) Use methods:
+    - difference_update
+    - symmetric_difference_update
+    - isdisjoint
+    and show final set states.
+
+------------------------------------------------------------
+Section D: Dictionaries
+------------------------------------------------------------
+23) Create dictionary student = {'name':'Asha', 'marks':88, 'passed':True}
+    Print:
+    - type(student)
+    - all keys
+    - all values
+
+24) Add, update, and delete operations:
+    - add 'city'
+    - update 'marks'
+    - remove one key with pop
+    - remove last inserted item with popitem
+
+25) Compare get() vs direct indexing:
+    For missing key 'grade', show behavior of:
+    - student['grade']
+    - student.get('grade')
+    - student.get('grade', 'NA')
+
+26) Frequency map problem:
+    Given list [2,1,2,3,1,2,4], create dictionary of counts.
+    Solvable methods possible:
+    - manual if key in dict
+    - dict.get(key,0)+1
+
+27) Invert dictionary (assume values unique):
+    {'a':1, 'b':2, 'c':3} -> {1:'a', 2:'b', 3:'c'}
+
+------------------------------------------------------------
+Section E: List Comprehensions
+------------------------------------------------------------
+28) Build square list from L1 = [1,2,3,4,5] using:
+    - loop + append
+    - list comprehension
+
+29) Build list of even numbers from L1 using comprehension filter.
+
+30) Build transformed list:
+    x**2 if x even else x*2 for L1
+
+31) Convert this loop into comprehension:
+    out = []
+    for word in ['py','thon','ai']:
+        out.append(word.upper())
+
+32) Nested comprehension challenge:
+    From matrix [[1,2],[3,4],[5,6]] create flat list [1,2,3,4,5,6].
+
+------------------------------------------------------------
+Section F: Functions
+------------------------------------------------------------
+33) Write function greet(name) and call it with three names.
+
+34) Write function square(x) returning x*x.
+    Test with positive, negative, and zero.
+
+35) Default argument function:
+    def add(x, y=100)
+    Test add(10,10) and add(10).
+
+36) Positional vs keyword arguments:
+    Using sub(x,y), show difference between:
+    - sub(30,10)
+    - sub(10,30)
+    - sub(x=30,y=10)
+    - sub(y=10,x=30)
+
+37) Multiple return values:
+    Write function square_point(x,y,z) returning all squares.
+    Unpack and print outputs.
+
+38) Write function split_even_odd(L) returning two lists.
+    Solvable methods possible:
+    - loop-based append
+    - comprehensions
+
+39) Write function list_info(L) returning:
+    - length
+    - first element (if present)
+    - last element (if present)
+
+40) Write function remove_value_all(L, x) removing all occurrences of x.
+    Solvable methods possible:
+    - build new list
+    - while x in L: L.remove(x)
+
+------------------------------------------------------------
+Section G: Mixed IITM-style Challenge Set
+------------------------------------------------------------
+41) Given mixed data [1, '2', True, 3.0, 'apple', False], count items by type:
+    int, str, bool, float, others.
+
+42) Given words list, create:
+    - set of unique words
+    - frequency dictionary
+    - list of words with length > 4 using comprehension
+
+43) Given two lists A and B, produce:
+    - common elements (order from A)
+    - unique elements only in A
+    - unique elements only in B
+
+44) Debug challenge:
+    L = [1,2,3]
+    for i in L:
+        if i == 2:
+            L.remove(i)
+    print(L)
+    Explain bug and provide two correct approaches.
+
+45) Build mini report function analyze(L):
+    return dictionary with keys:
+    - 'length'
+    - 'sum' (if numeric list)
+    - 'max'
+    - 'min'
+    - 'reversed_copy'
+    Handle empty list safely.
+
+------------------------------------------------------------
+Hints (Read only after trying)
+------------------------------------------------------------
+H1) [] and list() create empty list; () and tuple() create empty tuple; set() creates empty set.
+H2) {} creates an empty dictionary, not an empty set.
+H3) list.sort() changes list in place and returns None; sorted(list) returns a new list.
+H4) reversed(list) returns iterator; use list(reversed(list)) if list output needed.
+H5) Tuple singleton must include comma: (1,).
+H6) Sets are unordered and unique; indexing is not allowed.
+H7) set.remove(x) raises error if x missing; set.discard(x) does not.
+H8) In comprehension: "if only" goes after for; "if-else" expression goes before for.
+H9) bool is subclass of int in Python; type checks need care while counting.
+H10) Use dict.get(k, default) to avoid KeyError for missing keys.
+H11) For join, all elements must be strings.
+H12) Always test edge cases: empty input, one element, duplicates, mixed types.

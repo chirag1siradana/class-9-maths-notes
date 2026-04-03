@@ -1,0 +1,176 @@
+%PDF-1.4
+%‚„œ”
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [ 4 0 R 6 0 R ] /Count 2 >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+4 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 5 0 R >>
+endobj
+5 0 obj
+<< /Length 2246 >>
+stream
+BT
+/F1 11 Tf
+50 800 Td
+15 TL
+(WEEK 2 PRACTICE QUESTIONS \(Lectures 15-25\)) Tj
+T*
+(Confidence-first, level-by-level prep for exam in 2-3 days) Tj
+T*
+() Tj
+T*
+(How to use this sheet:) Tj
+T*
+(1\) Start from Level 1 and do not skip.) Tj
+T*
+(2\) Try each question first, then check by running your code.) Tj
+T*
+(3\) Mark questions as Easy / Medium / Revise.) Tj
+T*
+() Tj
+T*
+(LEVEL 1 - STARTER \(Build confidence\)) Tj
+T*
+(1. Write one single-line comment and print: Week 2 started.) Tj
+T*
+(2. Write one triple-quote multi-line comment \(docstring style\).) Tj
+T*
+(3. Set x = 10, use x += 5, then print x.) Tj
+T*
+(4. Set marks = 80, use marks -= 7, then print marks.) Tj
+T*
+(5. Set total = 12, use total *= 3, then print total.) Tj
+T*
+(6. Set value = 25, use value /= 5, then print value.) Tj
+T*
+(7. Check if 'alpha' in 'alphanumeric'.) Tj
+T*
+(8. Check if 7 in [1, 3, 5, 7, 9].) Tj
+T*
+(9. For x = 12, print result of 10 < x < 15.) Tj
+T*
+(10. Print a sentence with a quoted word using escape character.) Tj
+T*
+() Tj
+T*
+(LEVEL 2 - CORE PRACTICE \(Learn new things safely\)) Tj
+T*
+(11. Print two lines using \\n in one print statement.) Tj
+T*
+(12. Print Name and Class in two columns using \\t.) Tj
+T*
+(13. Convert 'PyThOn' to lowercase.) Tj
+T*
+(14. Convert 'exam prep' to uppercase.) Tj
+T*
+(15. Use capitalize\(\) on 'python language'.) Tj
+T*
+(16. Use title\(\) on 'week two control flow'.) Tj
+T*
+(17. Use swapcase\(\) on 'IITM Python'.) Tj
+T*
+(18. Check islower\(\) for 'hello'.) Tj
+T*
+(19. Check isupper\(\) for 'HELLO'.) Tj
+T*
+(20. Check istitle\(\) for 'Good Morning'.) Tj
+T*
+(21. Check isdigit\(\) for '2026' and '20A6'.) Tj
+T*
+(22. Check isalpha\(\) for 'Exam' and 'Exam2'.) Tj
+T*
+(23. Check isalnum\(\) for 'A1B2' and 'A1 B2'.) Tj
+T*
+() Tj
+T*
+(LEVEL 3 - APPLICATION \(Exam-style\)) Tj
+T*
+(24. Use strip\('*'\) on '***python***'.) Tj
+T*
+(25. Use lstrip\('0'\) on '000245'.) Tj
+T*
+(26. Use rstrip\('!'\) on 'great!!!'.) Tj
+T*
+(27. Check if 'classroom' startswith 'class'.) Tj
+T*
+(28. Check if 'revision' endswith 'sion'.) Tj
+T*
+(29. Count 'an' in 'banana'.) Tj
+T*
+(30. Find index of first 'm' in 'programming'.) Tj
+T*
+(31. Replace 'bad' with 'good' in 'bad habits'.) Tj
+T*
+(32. Input age and print Minor / Adult / Senior using if-elif-else.) Tj
+ET
+endstream
+endobj
+6 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 7 0 R >>
+endobj
+7 0 obj
+<< /Length 985 >>
+stream
+BT
+/F1 11 Tf
+50 800 Td
+15 TL
+(33. Input a number and print Positive / Negative / Zero.) Tj
+T*
+(34. Input marks and print grade: A, B, C, or D.) Tj
+T*
+(35. Input username; if empty print Invalid username else Welcome.) Tj
+T*
+() Tj
+T*
+(LEVEL 4 - CONFIDENCE BOOSTER CHALLENGE) Tj
+T*
+(36. Input a word and print lower, upper, title, and swapcase.) Tj
+T*
+(37. Input a sentence and a letter; print count of that letter.) Tj
+T*
+(38. Input password and confirm password:) Tj
+T*
+(    if same and length >= 8 print Valid, else Invalid.) Tj
+T*
+(39. Mini Caesar idea: shift lowercase letters by +1 \(a->b, z->a\).) Tj
+T*
+(40. Build a progress message using marks:) Tj
+T*
+(    >=90 Excellent, >=70 Good job, else Keep practicing.) Tj
+T*
+() Tj
+T*
+(2-DAY REVISION PLAN) Tj
+T*
+(Day 1: Questions 1-23 \(operators, escape chars, string basics\).) Tj
+T*
+(Day 2: Questions 24-40 \(methods + conditionals + challenge\).) Tj
+T*
+() Tj
+T*
+(You can do this. Solve level by level and keep momentum high.) Tj
+ET
+endstream
+endobj
+xref
+0 8
+0000000000 65535 f 
+0000000015 00000 n 
+0000000064 00000 n 
+0000000129 00000 n 
+0000000199 00000 n 
+0000000325 00000 n 
+0000002622 00000 n 
+0000002748 00000 n 
+trailer
+<< /Size 8 /Root 1 0 R >>
+startxref
+3783
+%%EOF
